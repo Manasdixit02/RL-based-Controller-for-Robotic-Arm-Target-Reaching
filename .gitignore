@@ -1,0 +1,29 @@
+# --- Folders to ignore ---
+intermediate_bad_formulations/
+model_best_refined/
+model_best_refined_2nd_run/
+model_best_refined_curriculum/
+models_kinova_env_first/
+
+# --- Specific python scripts to ignore ---
+kinova_env.py
+kinova_env_best_refined.py
+kinova_env_best_refined_curriculum_not_forget_old_learning_GRIPPER_ORIENTATION.py
+kinova_env_first.py
+kinova_env_GRIPPER_ORIENTATION_refined.py
+kinova_env_GRIPPER_ORIENTATION_refined_no_z.py
+kinova_env_training_but_with_jitter.py
+main_rl.py
+
+# --- Other files to ignore ---
+kinova_robot_sac.zip
+
+# Ignore videos
+*.mp4
+
+# Ignore docs
+*.pdf
+*.ppt
+*.pptx
+*.md
+

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot name="red_sphere">
+
+  <!-- Define a single link representing the sphere -->
+  <link name="sphere_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.05"/>  <!-- 5 cm radius -->
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/>  <!-- pure red, fully opaque -->
+      </material>
+    </visual>
+
+    <!-- Optional: Add collision geometry (same as visual) -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </collision>
+
+    <!-- Optional: Add inertial properties for physics engines -->
+    <inertial>
+      <mass value="0.1"/> <!-- 100 g -->
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia
+        ixx="0.0001" iyy="0.0001" izz="0.0001"
+        ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
+  </link>
+
+</robot>
+

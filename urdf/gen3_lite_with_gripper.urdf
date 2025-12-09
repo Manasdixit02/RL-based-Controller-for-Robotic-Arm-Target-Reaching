@@ -1,0 +1,351 @@
+<?xml version="1.0" ?>
+<robot name="gen3_lite_with_gripper">
+
+  <!-- Root link: no joint to world in Bullet; load with useFixedBase=True -->
+  <link name="gen3_base_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00244324 0.00015573 0.08616742"/>
+      <mass value="1.14608471"/>
+      <inertia ixx="0.00335854" ixy="3.9E-07" ixz="0.00010989" iyy="0.003311" iyz="1.91E-06" izz="0.00077158"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/base_link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="gen3_shoulder_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="2.477E-05 0.02213531 0.09937686"/>
+      <mass value="0.95974404"/>
+      <inertia ixx="0.00165947" ixy="2E-08" ixz="3.6E-07" iyy="0.00140355" iyz="0.00034927" izz="0.00089493"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/shoulder_link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/shoulder_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="gen3_joint_1" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.12825"/>
+    <parent link="gen3_base_link"/>
+    <child link="gen3_shoulder_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" lower="-2.68" upper="2.68" velocity="1.6"/>
+    <dynamics damping="0.05"/>
+  </joint>
+
+  <link name="gen3_arm_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.02998299 0.21154808 0.0453031"/>
+      <mass value="1.17756164"/>
+      <inertia ixx="0.01149277" ixy="1E-06" ixz="1.6E-07" iyy="0.00102851" iyz="0.00140765" izz="0.01133492"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/arm_link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/arm_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="gen3_joint_2" type="revolute">
+    <origin rpy="1.5708 0 0" xyz="0 -0.03 0.115"/>
+    <parent link="gen3_shoulder_link"/>
+    <child link="gen3_arm_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="14" lower="-2.61" upper="2.61" velocity="1.6"/>
+    <dynamics damping="0.05"/>
+  </joint>
+
+  <link name="gen3_forearm_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0301559 0.09502206 0.0073555"/>
+      <mass value="0.59767669"/>
+      <inertia ixx="0.00163256" ixy="7.11E-06" ixz="1.54E-06" iyy="0.00029798" iyz="9.587E-05" izz="0.00169091"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/forearm_link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/forearm_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="gen3_joint_3" type="revolute">
+    <origin rpy="-3.1416 0 0" xyz="0 0.28 0"/>
+    <parent link="gen3_arm_link"/>
+    <child link="gen3_forearm_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" lower="-2.61" upper="2.61" velocity="1.6"/>
+    <dynamics damping="0.05"/>
+  </joint>
+
+  <link name="gen3_lower_wrist_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00575149 0.01000443 0.08719207"/>
+      <mass value="0.52693412"/>
+      <inertia ixx="0.00069098" ixy="2.4E-07" ixz="0.00016483" iyy="0.00078519" iyz="7.4E-07" izz="0.00034115"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/lower_wrist_link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/lower_wrist_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="gen3_joint_4" type="revolute">
+    <origin rpy="1.5708 0 0" xyz="0 -0.14 0.02"/>
+    <parent link="gen3_forearm_link"/>
+    <child link="gen3_lower_wrist_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="7" lower="-2.6" upper="2.6" velocity="1.6"/>
+    <dynamics damping="0.05"/>
+  </joint>
+
+  <link name="gen3_upper_wrist_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.08056517 0.00980409 0.01872799"/>
+      <mass value="0.58097325"/>
+      <inertia ixx="0.00021268" ixy="5.21E-06" ixz="2.91E-06" iyy="0.00106371" iyz="1.1E-07" izz="0.00108465"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/upper_wrist_link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/gen3_lite/6dof/meshes/upper_wrist_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="gen3_joint_5" type="revolute">
+    <origin rpy="0 1.5708 0" xyz="0.0285 0 0.105"/>
+    <parent link="gen3_lower_wrist_link"/>
+    <child link="gen3_upper_wrist_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="7" lower="-2.53" upper="2.53" velocity="1.6"/>
+    <dynamics damping="0.05"/>
+  </joint>
+
+  <link name="gen3_end_effector_link"/>
+  <joint name="gen3_joint_6" type="revolute">
+    <origin rpy="0 -1.5708 0" xyz="-0.105 0 0.0285"/>
+    <parent link="gen3_upper_wrist_link"/>
+    <child link="gen3_end_effector_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="7" lower="-2.6" upper="2.6" velocity="3.2"/>
+    <dynamics damping="0.05"/>
+  </joint>
+
+  <!-- Robotiq 2F-85 (paths point to local meshes/robotiq/*.stl) -->
+  <link name="gen3_robotiq_85_base_link">
+    <visual>
+      <geometry>
+        <mesh filename="meshes/robotiq/robotiq_base.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="meshes/robotiq/robotiq_base.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 2.274e-05 0.03232288"/>
+      <mass value="0.66320197"/>
+      <inertia ixx="5.1617816e-04" ixy="2.936e-8" ixz="0.0" iyy="5.8802208e-04" iyz="-3.2296e-7" izz="3.9462776e-04"/>
+    </inertial>
+  </link>
+
+  <joint name="gen3_robotiq_85_base_joint" type="fixed">
+    <parent link="gen3_end_effector_link"/>
+    <child link="gen3_robotiq_85_base_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <link name="gen3_robotiq_85_left_knuckle_link">
+    <visual><geometry><mesh filename="meshes/robotiq/left_knuckle.stl"/></geometry></visual>
+    <collision><geometry><mesh filename="meshes/robotiq/left_knuckle.stl"/></geometry></collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.01213197 0.0002 -0.00058647"/>
+      <mass value="0.01384773208"/>
+      <inertia ixx="3.5232e-7" ixy="0.0" ixz="1.1744e-7" iyy="2.31944e-6" iyz="0" izz="2.23136e-6"/>
+    </inertial>
+  </link>
+
+  <link name="gen3_robotiq_85_right_knuckle_link">
+    <visual><geometry><mesh filename="meshes/robotiq/right_knuckle.stl"/></geometry></visual>
+    <collision><geometry><mesh filename="meshes/robotiq/right_knuckle.stl"/></geometry></collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.01213197 0.0002 -0.00058647"/>
+      <mass value="0.01384773208"/>
+      <inertia ixx="3.5232e-7" ixy="0.0" ixz="-1.1744e-7" iyy="2.31944e-6" iyz="0.0" izz="2.23136e-6"/>
+    </inertial>
+  </link>
+
+  <link name="gen3_robotiq_85_left_finger_link">
+    <visual><geometry><mesh filename="meshes/robotiq/left_finger.stl"/></geometry></visual>
+    <collision><geometry><mesh filename="meshes/robotiq/left_finger.stl"/></geometry></collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00346899 -0.00079447 0.01867121"/>
+      <mass value="0.04260376752"/>
+      <inertia ixx="1.385792e-05" ixy="0.0" ixz="-2.17264e-06" iyy="1.183208e-05" iyz="0.0" izz="5.19672e-06"/>
+    </inertial>
+  </link>
+
+  <link name="gen3_robotiq_85_right_finger_link">
+    <visual><geometry><mesh filename="meshes/robotiq/right_finger.stl"/></geometry></visual>
+    <collision><geometry><mesh filename="meshes/robotiq/right_finger.stl"/></geometry></collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00346899 -5.53e-06 0.01867121"/>
+      <mass value="0.04260376752"/>
+      <inertia ixx="1.385792e-05" ixy="0.0" ixz="2.17264e-06" iyy="1.183208e-05" iyz="0.0" izz="5.19672e-06"/>
+    </inertial>
+  </link>
+
+  <link name="gen3_robotiq_85_left_inner_knuckle_link">
+    <visual><geometry><mesh filename="meshes/robotiq/left_inner_knuckle.stl"/></geometry></visual>
+    <collision><geometry><mesh filename="meshes/robotiq/left_inner_knuckle.stl"/></geometry></collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.01897699 0.00015001 0.02247101"/>
+      <mass value="0.02969376448"/>
+      <inertia ixx="9.57136e-06" ixy="0.0" ixz="-3.93424e-06" iyy="8.69056e-06" iyz="0.0" izz="8.19144e-06"/>
+    </inertial>
+  </link>
+
+  <link name="gen3_robotiq_85_right_inner_knuckle_link">
+    <visual><geometry><mesh filename="meshes/robotiq/right_inner_knuckle.stl"/></geometry></visual>
+    <collision><geometry><mesh filename="meshes/robotiq/right_inner_knuckle.stl"/></geometry></collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.01926824 5.001e-05 0.02222178"/>
+      <mass value="0.02969376448"/>
+      <inertia ixx="9.42456e-06" ixy="0.0" ixz="3.9636e-06" iyy="8.69056e-06" iyz="0.0" izz="8.33824e-06"/>
+    </inertial>
+  </link>
+
+  <link name="gen3_robotiq_85_left_finger_tip_link">
+    <visual><geometry><mesh filename="meshes/robotiq/left_finger_tip.stl"/></geometry></visual>
+    <collision><geometry><mesh filename="meshes/robotiq/left_finger_tip.stl"/></geometry></collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.01456706 -0.0008 0.01649701"/>
+      <mass value="0.04268588744"/>
+      <inertia ixx="1.048152e-05" ixy="0.0" ixz="3.5232e-06" iyy="1.197888e-05" iyz="0.0" izz="4.22784e-06"/>
+    </inertial>
+  </link>
+
+  <link name="gen3_robotiq_85_right_finger_tip_link">
+    <visual><geometry><mesh filename="meshes/robotiq/right_finger_tip.stl"/></geometry></visual>
+    <collision><geometry><mesh filename="meshes/robotiq/right_finger_tip.stl"/></geometry></collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.01456706 5e-05 0.01649701"/>
+      <mass value="0.04268588744"/>
+      <inertia ixx="1.048152e-05" ixy="0.0" ixz="-3.5232e-06" iyy="1.197888e-05" iyz="0.0" izz="4.22784e-06"/>
+    </inertial>
+  </link>
+
+  <!-- Gripper joints (PyBullet ignores <mimic>; couple in code if needed) -->
+  <joint name="gen3_robotiq_85_left_knuckle_joint" type="revolute">
+    <parent link="gen3_robotiq_85_base_link"/>
+    <child link="gen3_robotiq_85_left_knuckle_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="0.03060114 0.0 0.05490452"/>
+    <limit effort="50" lower="0.0" upper="0.8" velocity="0.5"/>
+    <dynamics damping="0.05"/>
+  </joint>
+
+  <joint name="gen3_robotiq_85_right_knuckle_joint" type="revolute">
+    <parent link="gen3_robotiq_85_base_link"/>
+    <child link="gen3_robotiq_85_right_knuckle_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="-0.03060114 0.0 0.05490452"/>
+    <limit effort="50" lower="-0.8" upper="0.0" velocity="0.5"/>
+    <mimic joint="gen3_robotiq_85_left_knuckle_joint" multiplier="-1"/>
+    <dynamics damping="0.05"/>
+  </joint>
+
+  <joint name="gen3_robotiq_85_left_finger_joint" type="fixed">
+    <parent link="gen3_robotiq_85_left_knuckle_link"/>
+    <child link="gen3_robotiq_85_left_finger_link"/>
+    <origin rpy="0 0 0" xyz="0.03152616 0.0 -0.00376347"/>
+  </joint>
+
+  <joint name="gen3_robotiq_85_right_finger_joint" type="fixed">
+    <parent link="gen3_robotiq_85_right_knuckle_link"/>
+    <child link="gen3_robotiq_85_right_finger_link"/>
+    <origin rpy="0 0 0" xyz="-0.03152616 0.0 -0.00376347"/>
+  </joint>
+
+  <joint name="gen3_robotiq_85_left_inner_knuckle_joint" type="continuous">
+    <parent link="gen3_robotiq_85_base_link"/>
+    <child link="gen3_robotiq_85_left_inner_knuckle_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="0.0127 0.0 0.06142"/>
+    <mimic joint="gen3_robotiq_85_left_knuckle_joint"/>
+  </joint>
+
+  <joint name="gen3_robotiq_85_right_inner_knuckle_joint" type="continuous">
+    <parent link="gen3_robotiq_85_base_link"/>
+    <child link="gen3_robotiq_85_right_inner_knuckle_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="-0.0127 0.0 0.06142"/>
+    <mimic joint="gen3_robotiq_85_left_knuckle_joint" multiplier="-1"/>
+  </joint>
+
+  <joint name="gen3_robotiq_85_left_finger_tip_joint" type="continuous">
+    <parent link="gen3_robotiq_85_left_finger_link"/>
+    <child link="gen3_robotiq_85_left_finger_tip_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="0.00563134 0.0 0.04718515"/>
+    <mimic joint="gen3_robotiq_85_left_knuckle_joint" multiplier="-1"/>
+  </joint>
+
+  <joint name="gen3_robotiq_85_right_finger_tip_joint" type="continuous">
+    <parent link="gen3_robotiq_85_right_finger_link"/>
+    <child link="gen3_robotiq_85_right_finger_tip_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="-0.00563134 0.0 0.04718515"/>
+    <mimic joint="gen3_robotiq_85_left_knuckle_joint"/>
+  </joint>
+
+  <!-- (Optional) end-effector dummy link/joint were removed; not needed for Bullet -->
+</robot>
+
