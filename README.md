@@ -97,13 +97,13 @@ self.curriculum_thresholds = [50, 100, 150, 200]
 ### Step 1: Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/<your-repo>.git
+git clone git@github.com:Manasdixit02/RL-based-Controller-for-Robotic-Arm-Target-Reaching.git
 ```
 
 ### Step 2: Navigate into the repository
 
 ```bash
-cd <your-repo>
+cd RL-based-Controller-for-Robotic-Arm-Target-Reaching
 ```
 
 ### Step 3: Run the RL script
@@ -146,7 +146,7 @@ If you use this environment in academic work:
   author       = {Manas Dixit},
   title        = {Reinforcement Learning Environment for 6-DOF Kinova Gen3 Manipulator},
   year         = {2025},
-  howpublished = {\url{https://github.com/<your-username>/<your-repo>}}
+  howpublished = {\url{https://github.com/Manasdixit02/RL-based-Controller-for-Robotic-Arm-Target-Reaching}}
 }
 ```
 
